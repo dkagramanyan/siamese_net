@@ -51,6 +51,8 @@ def get_dataset_info(main_folder_name):
 
     print('negative pairs count =',negative_pairs_count)
     print('negative pairs images weight =',negative_pairs_weight,' GiB')
+    
+    print('\ntotal memory size =', positive_pairs_weight+negative_pairs_weight,' GiB')
 
     
 def calculate_dataset(main_folder_name,
@@ -80,7 +82,8 @@ def calculate_dataset(main_folder_name,
     print('\ndesired negative pairs count =',max_negative)
     print('calculated negative pairs count =',calculated_negative)
     print('negative pairs images weight =',calculated_negative_pairs_weight,' GiB')
-
+    
+    print('\ntotal memory size =', calculated_positive_pairs_weight+calculated_negative_pairs_weight,' GiB')
     
 def estimate_dataset(main_folder_name,
                      max_positive,
@@ -106,6 +109,8 @@ def estimate_dataset(main_folder_name,
     
     print('\ndesired negative pairs count =',max_negative)
     print('negative pairs images weight =',calculated_negative_pairs_weight,' GiB')
+    
+    print('\ntotal memory size =', calculated_positive_pairs_weight+calculated_negative_pairs_weight,' GiB')
 
     
     
@@ -188,7 +193,7 @@ def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count
                       max_negative_pairs_count,
                       positive_counter,
                       negative_counter-positive_counter)
-    print('\npassed seconds: ',time.clock()-start_time)
+    print('\npassed seconds: ',round(time.clock()-start_time,3),' seconds')
     return pairs,labels
     
     
