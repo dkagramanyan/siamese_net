@@ -135,27 +135,24 @@ def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count
     
     positive_counter=0
     
-    while positive_counter <max_positive_pairs_count:
-        for folder in folders:
-            # choosing class folder
-            folder_images_names=(os.listdir(main_folder_name+'/'+folder))
-            for kernel_image_name in folder_images_names:
-                # choosing class image
-                for second_image_name in folder_images_names:
-                    # choosing second class image
-                    if positive_counter!=max_positive_pairs_count:
-                        # creating a pair
-                        kernel_image=imread(main_folder_name+'/'+folder+'/'+kernel_image_name)
-                        second_image=imread(main_folder_name+'/'+folder+'/'+second_image_name)
-                        pairs[positive_counter]=[kernel_image,second_image]
-                        labels.append([1])
-                        positive_counter+=1
-                    else:
-                        # if number of positive pairs is bigger, then max_positive_pairs_count
-                        break
-        # if number of positive pairs is smmaller, then max_positive_pairs_count
-        break
 
+    while positive_counter <max_positive_pairs_count:
+        
+        kernel_folder=np.random.choice(folders)
+        kernel_folder_images=os.listdir(main_folder_name+'/'+kernel_folder)
+
+        first_image_name=np.random.choice(kernel_folder_images)
+        second_image_name=np.random.choice(kernel_folder_images)
+
+        first_image=imread(main_folder_name+'/'+kernel_folder+'/'+first_image_name)
+        second_image=imread(main_folder_name+'/'+kernel_folder+'/'+second_image_name)
+        
+        # creating a pair
+        pairs[positive_counter]=[first_image,second_image]
+        labels.append([1])
+        
+        positive_counter+=1
+        
     #
     # creating negative pairs
     #
