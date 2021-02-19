@@ -159,6 +159,7 @@ def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count
     print('Calculation is done\n')
     
     print('passed seconds: ',round(time.clock()-start_time,3),' seconds')
+    labels=np.array(labels).reshape(max_positive_pairs_count+max_negative_pairs_count,1)
     return pairs,labels
     
     
