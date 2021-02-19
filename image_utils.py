@@ -55,35 +55,6 @@ def get_dataset_info(main_folder_name):
     print('\ntotal memory size =', positive_pairs_weight+negative_pairs_weight,' GiB')
 
     
-def calculate_dataset(main_folder_name,
-                     max_positive,
-                     max_negative,
-                     calculated_positive,
-                     calculated_negative ):
-    #
-    #  calculate memory size to load all pairs
-    #
-
-    folder=os.listdir(main_folder_name)[0]
-    folder_image_name=os.listdir(main_folder_name+'/'+folder)[0]
-    image=imread(main_folder_name+'/'+folder+'/'+folder_image_name)
-    image_weight=image.nbytes
-
-    header='Calculated info \n'
-    calculated_positive_pairs_weight=round((image_weight*calculated_positive*2)/(1024**3),3)
-    calculated_negative_pairs_weight=round((image_weight*calculated_negative*2)/(1024**3),3)
-
-    print('-------------------------------------------------------')
-    print(header)
-
-    print('desired positive pairs count =',max_positive)
-    print('calculated positive pairs count =',calculated_positive)
-    print('positive pairs images weight =',calculated_positive_pairs_weight,' GiB')
-    print('\ndesired negative pairs count =',max_negative)
-    print('calculated negative pairs count =',calculated_negative)
-    print('negative pairs images weight =',calculated_negative_pairs_weight,' GiB')
-    
-    print('\ntotal memory size =', calculated_positive_pairs_weight+calculated_negative_pairs_weight,' GiB')
     
 def estimate_dataset(main_folder_name,
                      max_positive,
@@ -118,6 +89,7 @@ def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count
     #
     # creating positive pairs sum Li**2 pairs 
     #
+    print('Calculation began\n')
     start_time = time.clock()
     
     labels = []
@@ -184,13 +156,9 @@ def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count
         pairs[negative_counter]=[first_image,second_image]
         labels.append([0])
         negative_counter+=1
+    print('Calculation is done\n')
     
-    calculate_dataset(main_folder_name,
-                      max_positive_pairs_count,
-                      max_negative_pairs_count,
-                      positive_counter,
-                      negative_counter-positive_counter)
-    print('\npassed seconds: ',round(time.clock()-start_time,3),' seconds')
+    print('passed seconds: ',round(time.clock()-start_time,3),' seconds')
     return pairs,labels
     
     
