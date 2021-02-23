@@ -82,7 +82,7 @@ def estimate_dataset(main_folder_name,
     print('negative pairs images weight =',calculated_negative_pairs_weight,' GiB')
     
     print('\ntotal memory size =', calculated_positive_pairs_weight+calculated_negative_pairs_weight,' GiB')
-
+    
     
     
 def get_pairs(main_folder_name,max_positive_pairs_count,max_negative_pairs_count):
