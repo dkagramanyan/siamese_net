@@ -3,6 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 /.idea/*
+/saint george images/*
+/saint georges dataset/*
+/sof dataset/*
+!/saint george images/georges/georges.csv
+!/saint george images/non georges/non_georges.csv
 
 
 # C extensions
