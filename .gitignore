@@ -132,3 +132,4 @@ dmypy.json
 .pyre/
 /sof_images/
 /sof dataset/
+/datasets/
